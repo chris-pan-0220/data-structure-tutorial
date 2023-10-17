@@ -15,7 +15,7 @@
 前兩個選項，系統運行速度會比較快，後面兩個就自行斟酌
 * WSL2 (只支援windows系統，是windows系統的首選)
 * 安裝雙系統
-* vmware workstation on windows
-* virtualbox on windows
+* vmware workstation on windows/mac
+* virtualbox on windows/mac
 
 

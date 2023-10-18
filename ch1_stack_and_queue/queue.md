@@ -10,24 +10,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define QUEUE_SIZE 10
+#define SIZE 10
 #define TEST_DATA_SIZE 11
 
 // pop (from front)
 // push (from rear)
 // empty (check front, rear)
-// full (check rear, QUEUE_SIZE)
+// full (check rear, SIZE)
 typedef struct Queue{
     int front;
     int rear;
-    char items[QUEUE_SIZE];
+    char items[SIZE];
 } Queue;
 
 void init_queue(Queue *queue);
 char pop(Queue *queue);
 void push(Queue *queue, char item);
-int empty(Queue *queue);
-int full(Queue *queue);
+int empty(const Queue *const queue);
+int full(const Queue *const queue);
 
 int main(){
     Queue queue;
@@ -76,21 +76,29 @@ void push(Queue *queue, char item){
         printf("Queue is full.\n");
 }
 
-int empty(Queue *queue){
+int empty(const Queue *const queue){
     return queue->front == queue->rear;
 }
 
-int full(Queue *queue){
-    return queue->rear == QUEUE_SIZE;
+int full(const Queue *const queue){
+    return queue->rear == SIZE;
 }
 ```
 
 ### circular queue 
-circular queue的創造是為了解決一般的queue空間用完的問題，
-circular queue的實作大概會有以下的要點
-* mod 取值
-* 
-* 
+
+#### 前情提要
+**假設rear指向queue目前最末端元素的index+1, 當rear等於QUEUE_SIZE，也就是超過陣列範圍的時候，則讓rear=0，從頭開始數**
+
+這樣做會有什麼問題？
+
+想像一個大小為10的queue，一開始`front=0, rear=0`，
+push 10個elements之後，queue is full，
+此時`front=0, rear=0`
+
+因為`empty`和`full`的條件是一樣的，所以這種設計方法行不通
+#### 實現方法
+為front額外保留一個空間，使`empty`和`full`的條件不相同
 
 ```c
 // ch1_queue_circular.c

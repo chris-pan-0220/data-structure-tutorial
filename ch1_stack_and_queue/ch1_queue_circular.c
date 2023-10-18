@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #define QUEUE_SIZE 11 // capacity = QUEUE_SIZE - 1 
+#define CAPACITY QUEUE_SIZE-1
 #define TEST_DATA_SIZE 11
 
 typedef struct Queue{
@@ -13,8 +14,8 @@ typedef struct Queue{
 void init_queue(Queue *queue);
 char pop(Queue *queue);
 void push(Queue *queue, char item);
-int empty(Queue *queue);
-int full(Queue *queue);
+int empty(const Queue *const queue);
+int full(const Queue *const queue);
 
 int main(){
     Queue queue;
@@ -66,10 +67,10 @@ void push(Queue *queue, char item){
         printf("Queue is full.\n");
 }
 
-int empty(Queue *queue){
+int empty(const Queue *const queue){
     return queue->front == queue->rear;
 }
 
-int full(Queue *queue){
+int full(const Queue *const queue){
     return (queue->rear + 1) % QUEUE_SIZE == queue->front;
 }

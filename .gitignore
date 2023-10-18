@@ -50,3 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# other content 
+*.md 
+!README.md
+.vscode

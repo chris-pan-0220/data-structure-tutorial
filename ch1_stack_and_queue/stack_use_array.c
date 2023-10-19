@@ -12,6 +12,7 @@ int empty(const STACK * const ptr){
         return(1);
     return(0);
 }
+
 int overflow(const STACK * const ptr){
     if (ptr->top == SIZE-1)
         return(1);

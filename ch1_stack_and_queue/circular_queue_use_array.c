@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 100
+#define SIZE 10
 typedef struct queue {
     unsigned int front; // range [0..SIZE-1]
     unsigned int rear; // range [0..SIZE-1]
     char items[SIZE];
 } QUEUE;
-
+          
 int empty(const QUEUE * const ptr){
     if (ptr->rear == ptr->front)
         return(1);
@@ -22,15 +22,15 @@ int overflow(const QUEUE * const ptr){
 
 void insert(QUEUE *ptr, char input){
     if(!overflow(ptr)){
-        ptr->items[ptr->rear] = input;
         ptr->rear = (ptr->rear + 1) % SIZE;
+        ptr->items[ptr->rear] = input;
     }
 }
 
 char pop(QUEUE *ptr){
     if(!empty(ptr)){
-        char output = ptr->items[ptr->front];
         ptr->front = (ptr->front + 1) % SIZE;
+        char output = ptr->items[ptr->front];
         return output;
     }
 }
